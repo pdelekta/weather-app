@@ -1,0 +1,332 @@
+*, *::before, ::after {
+    box-sizing: border-box;
+}
+
+* {
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 400;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgb(255,255,255);
+    background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(200,200,200,1) 100%);
+}
+
+h1 {
+    margin: 0;
+    color: #704CF6;
+}
+
+.app {
+    display: flex;
+    flex-direction: column;
+    min-width: 880px;
+    transition: all .1s ease-in-out;
+}
+
+.daily-forecast {
+    display: none;
+    margin: 2rem 2rem 0 2rem;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    background-color: #704CF6;
+    color: #ffffff;
+}
+
+.current-weather {
+    padding: 2rem 2rem 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: .75rem;
+    flex-grow: 1;
+}
+
+.current-weather__icon {
+    width: 3.5rem;
+    height: 3.5rem;
+}
+
+.current-weather__title {
+    display: flex;
+    gap: .5rem;
+    align-items: flex-end;
+}
+
+.current-weather__temperature {
+    font-size: 3.5rem;
+    font-weight: 100;
+    line-height: 3.5rem;
+}
+
+.current-weather__location {
+    font-size: 2rem;
+    font-weight: 200;
+    line-height: 2rem;
+}
+
+.current-weather__details {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.current-weather__detail {
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.detail__label {
+    text-transform: uppercase;
+    color: #B393FE;
+    font-weight: 500;
+}
+
+.detail__value {
+    font-weight: 300;
+}
+
+.hourly-forecast {
+    display: flex;
+    align-items: center;
+}
+
+.hourly-forecast__forecast {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 2rem;
+}
+
+.forecast__temperature {
+    display: flex;
+    flex-grow: 1;
+    padding: 1rem;
+    font-size: 2rem;
+    font-weight: 200;
+    align-items: center;
+    justify-content: center;
+}
+
+.forecast__hour {
+    padding: 1rem 2rem;
+    color: #D0A3FF;
+    font-weight: 500;
+}
+
+.hourly-forecast__forecast:nth-child(1),
+.hourly-forecast__forecast:nth-child(3),
+.hourly-forecast__forecast:nth-child(5) {
+    background: rgb(208,163,25,0.2);
+    background: linear-gradient(0deg, rgba(208,163,255,0.2) 0%, rgba(112,76,246,1) 70%);
+    -webkit-box-shadow: 0px 6px 10px -2px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0px 6px 10px -2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 6px 10px -2px rgba(0, 0, 0, 0.3);
+}
+
+.hourly-forecast__forecast:last-child {
+    border-top-right-radius: 1rem;
+}
+
+.weekly-forecast {
+    display: none;
+    background-color: #ffffff;
+    border-top-right-radius: 1rem;
+    border-top-left-radius: 1rem;
+    padding: 2rem 4rem;
+    justify-content: space-around;
+    gap: 1rem;
+    -webkit-box-shadow: 0px 10px 60px -30px rgba(0, 0, 0, .5);
+    -moz-box-shadow: 0px 10px 60px -30px rgba(0, 0, 0, .5);
+    box-shadow: 0px 10px 60px -30px rgba(0, 0, 0, .5);
+}
+
+.day-forecast {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    align-items: center;
+}
+
+.day-forecast__icon {
+    width: 3.5rem;
+    height: 3.5rem;
+    fill: #9E9E9E;
+}
+
+.day-forecast__temperature {
+    font-size: 2rem;
+    display: flex;
+    gap: .25rem;
+}
+
+.day-temperature, .night-temperature {
+    font-weight: 300;
+}
+
+.night-temperature,
+.day-forecast__day {
+    color: #9E9E9E
+}
+
+.day-forecast__day {
+    text-transform: uppercase;
+}
+
+.search-view {
+    display: flex;
+    padding: 2rem;
+    background-color: #704CF6;
+    border-radius: 1rem;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem 2rem 0 2rem;
+}
+
+.search-view__form {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    align-items: center;
+}
+
+.search-view__input {
+    width: 100%;
+    max-width: 300px;
+    padding: .5rem 1rem;
+    outline: none;
+    border-radius: 1rem;
+    border: none;
+    transition: box-shadow .1s ease-in-out;
+    color: #704CF6;
+}
+
+.search-view__input::placeholder {
+    color: #9E9E9E;
+}
+
+.search-view__input:focus,
+.search-view__input:hover,
+.search-view__button:hover {
+    box-shadow: 0px 4px 12px -4px rgba(0, 0, 0, .3);
+}
+
+.search-view__error-message {
+    padding-top: .5rem;
+    color: #ff5151;
+}
+
+.search-view__button {
+    display: flex;
+    width: fit-content;
+    padding: 0.5rem 2rem;
+    border-radius: 1rem;
+    border: 1px solid #ffffff;
+    outline: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: color .1s ease-in-out, background-color .1s ease-in-out;
+    background-color: #704CF6;
+    color: #ffffff;
+    margin-top: 1.5rem;
+}
+
+.search-view__button:hover {
+    color: #704CF6;
+    background-color: #ffffff;
+}
+
+.skeleton {
+    animation: skeleton-loading 1s linear infinite alternate;
+    border-radius: 50%;
+}
+
+@keyframes skeleton-loading {
+    0% {
+        background-color: hsla(201, 15%, 70%, 0.7);
+    }
+
+    100% {
+        background-color: hsl(200, 15%, 95%, 0.7);
+    }
+}
+
+.lds-ellipsis {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+
+.lds-ellipsis div {
+    position: absolute;
+    top: 33px;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: #ffffff;
+    animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+
+.lds-ellipsis div:nth-child(1) {
+    left: 8px;
+    animation: lds-ellipsis1 0.6s infinite;
+}
+
+.lds-ellipsis div:nth-child(2) {
+    left: 8px;
+    animation: lds-ellipsis2 0.6s infinite;
+}
+
+.lds-ellipsis div:nth-child(3) {
+    left: 32px;
+    animation: lds-ellipsis2 0.6s infinite;
+    z-index: 2;
+}
+
+.lds-ellipsis div:nth-child(4) {
+    left: 56px;
+    animation: lds-ellipsis3 0.6s infinite;
+}
+
+@keyframes lds-ellipsis1 {
+    0% {
+        transform: scale(0);
+        background-color: #704CF6;
+    }
+    100% {
+        transform: scale(1);
+        background-color: #ffffff;
+    }
+}
+
+@keyframes lds-ellipsis3 {
+    0% {
+        transform: scale(1);
+        background-color: #ffffff;
+    }
+    100% {
+        transform: scale(0);
+        background-color: #704CF6;
+    }
+}
+
+@keyframes lds-ellipsis2 {
+    0% {
+        transform: translate(0, 0);
+    }
+    100% {
+        transform: translate(24px, 0);
+    }
+}
