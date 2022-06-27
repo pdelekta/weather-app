@@ -146,7 +146,6 @@ class Weather {
         const data = await this.prepareData();
         if(typeof data.current !== 'undefined' || typeof data.weekly !== 'undefined' || typeof data.hourly !== 'undefined') {
             this.renderData(data);
-            console.log(data);
             this.domElements.showResults();
         }
     }
