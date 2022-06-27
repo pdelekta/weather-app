@@ -57,7 +57,7 @@ h1 {
 .current-weather__title {
     display: flex;
     gap: .5rem;
-    align-items: flex-end;
+    align-items: center;
 }
 
 .current-weather__temperature {
@@ -67,15 +67,30 @@ h1 {
 }
 
 .current-weather__location {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    flex-grow: 1;
+}
+
+.current-weather__location-city {
+    display: flex;
+    justify-content: flex-end;
     font-size: 2rem;
     font-weight: 200;
     line-height: 2rem;
+}
+
+.current-weather__location-country {
+    display: flex;
+    justify-content: end;
 }
 
 .current-weather__details {
     display: flex;
     flex-direction: column;
     gap: .5rem;
+    margin-top: .5rem;
 }
 
 .current-weather__detail {

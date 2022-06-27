@@ -8,7 +8,8 @@ class CoreDomElements {
         this.weeklyForecastElement = document.querySelector('.weekly-forecast');
         this.errorElementTemplate = document.importNode(document.getElementById('error').content, true);
         this.currentWeatherTemperatureElement = document.querySelector('.current-weather__temperature');
-        this.weatherLocationElement = document.querySelector('.current-weather__location');
+        this.weatherLocationCityElement = document.querySelector('.current-weather__location-city');
+        this.weatherLocationCountryElement = document.querySelector('.current-weather__location-country');
         this.precipitationElement = document.getElementById('precipitation');
         this.humidityElement = document.getElementById('humidity');
         this.windElement = document.getElementById('wind');
@@ -34,7 +35,7 @@ class CoreDomElements {
 
     hideLoader() {
         const containerFirstChild = this.searchContainer.firstElementChild;
-        if(!containerFirstChild.classList.contains('lds-ellipsis')) throw new Error('Nie można usunąć loadera, którego nie ma');
+        if(!containerFirstChild.classList.contains('lds-ellipsis')) return;
         containerFirstChild.remove();
     }
 
@@ -145,9 +146,8 @@ class Weather {
         const data = await this.prepareData();
         if(typeof data.current !== 'undefined' || typeof data.weekly !== 'undefined' || typeof data.hourly !== 'undefined') {
             this.renderData(data);
+            console.log(data);
             this.domElements.showResults();
-        } else {
-            console.log('same undefined');// do sprawdzenia
         }
     }
 
@@ -160,7 +160,8 @@ class Weather {
     renderCurrent(data) {
         this.domElements.currentWeatherIconElement.src = `https://www.weatherbit.io/static/img/icons/${data.weather.icon}.png`;
         this.domElements.currentWeatherTemperatureElement.innerText = `${data.temp.toFixed(0)}°`;
-        this.domElements.weatherLocationElement.innerText = data.city_name;
+        this.domElements.weatherLocationCityElement.innerText = data.city_name;
+        this.domElements.weatherLocationCountryElement.innerText = data.country_code;
         this.domElements.precipitationElement.innerText = `${data.precip} mm/h`;
         this.domElements.humidityElement.innerText = `${data.rh}%`;
         this.domElements.windElement = `${data.wind_spd} m/s`;
@@ -179,8 +180,13 @@ class Weather {
     renderHourly(data) {
         this.domElements.hourlyForecastElements.forEach((forecast, index) => {
             forecast.querySelector('.forecast__temperature').innerText = `${data[index].temp.toFixed(0)}°`;
-            const date = new Date(data[index].timestamp_local)
-            forecast.querySelector('.forecast__hour').innerText = `${date.getHours()}:00`;
+            //const date = new Date(data[index].timestamp_local)
+
+            const utcDate = new Date(data[index].timestamp_utc);
+            const utcOffset = new Date().getTimezoneOffset() / -60;
+            const localHour = utcDate.getHours() + utcOffset;
+            utcDate.setHours(localHour);
+            forecast.querySelector('.forecast__hour').innerText = `${utcDate.getHours()}:00`;
         })
     }
 
